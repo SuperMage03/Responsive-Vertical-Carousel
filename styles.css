@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.carousel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel > button {
+    width: 80px;
+    height: 20px;
+}
+
+.carousel-frame {
+    overflow: hidden;
+    margin: 5px 0;
+}
+
+.carousel-slide-container {
+    position: relative;
+}
+
+.carousel-slide-container > img {
+    position: absolute;
+    padding: 5px 0;
+    width: 100%;
+    transform: translateY(-50%);
+
+    transition: top 500ms ease-in-out;
+}
+
+.carousel-selected-slide {
+
+}
