@@ -16,20 +16,14 @@ class Carousel {
             this.referenceSlideNodes.push(slideNode.cloneNode());
         });
 
-        this.prevBtn.addEventListener("click", () => {
-            this.prevBtnListener();
-        });
-
-        this.nextBtn.addEventListener("click", () => {
-            this.nextBtnListener();
-        });
-
-        this.resizeUpdate();
+        this.prevBtn.addEventListener("click", () => { this.prevBtnListener(); });
+        this.nextBtn.addEventListener("click", () => { this.nextBtnListener(); });
+        this.update();
     }
 
-    get frameWidth() {
-        return this.frameNode.getBoundingClientRect().width;
-    }
+    // get frameWidth() {
+    //     return this.frameNode.getBoundingClientRect().width;
+    // }
 
     get frameHeight() {
         return this.frameNode.getBoundingClientRect().height;
@@ -37,16 +31,16 @@ class Carousel {
 
     prevBtnListener() {
         this.selectedIdx = remainder((this.selectedIdx + 1), this.slides.length);
-        this.resizeUpdate();
+        this.update();
     }
 
 
     nextBtnListener() {
         this.selectedIdx = remainder((this.selectedIdx - 1), this.slides.length);
-        this.resizeUpdate();
+        this.update();
     }
 
-    resizeUpdate() {
+    update() {
         // Centering Selected Slide
         const selectedSlide = this.slides[this.selectedIdx];
         selectedSlide.node.style.top = `${Math.ceil(this.frameHeight / 2)}px`;
@@ -153,9 +147,9 @@ class CarouselSlides {
         this.slideID = slideID;
     }
 
-    get slideWidth() {
-        return this.node.getBoundingClientRect().width;
-    }
+    // get slideWidth() {
+    //     return this.node.getBoundingClientRect().width;
+    // }
 
     get slideHeight() {
         return this.node.getBoundingClientRect().height;
@@ -176,5 +170,5 @@ window.onload = () => {
 
 
 window.addEventListener("resize", () => {
-    carousels.forEach(carousel => carousel.resizeUpdate());
+    carousels.forEach(carousel => carousel.update());
 });
