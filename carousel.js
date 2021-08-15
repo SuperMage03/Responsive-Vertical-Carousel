@@ -1,3 +1,9 @@
+// Functions
+function remainder(num, divisor) {
+    return (num % divisor + divisor) % divisor;
+}
+
+// Classes
 class Carousel {
     constructor(node) {
         this.carouselNode = node;
@@ -141,10 +147,6 @@ class Carousel {
     }
 }
 
-function remainder(num, divisor) {
-    return (num % divisor + divisor) % divisor;
-}
-
 class CarouselSlides {
     constructor(node, slideID) {
         this.node = node;
@@ -161,7 +163,7 @@ class CarouselSlides {
 }
 
 
-
+// Initialization Code
 const carousels = [];
 
 window.onload = () => {
