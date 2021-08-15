@@ -45,14 +45,18 @@ class Carousel {
         const selectedSlide = this.slides[this.selectedIdx];
         selectedSlide.node.style.top = `${Math.ceil(this.frameHeight / 2)}px`;
 
-        const slideDownOffset =  this.slides[remainder(this.selectedIdx+1, this.slides.length)].slideHeight / 2 - selectedSlide.slideHeight / 2;
-        const slideUpOffset =  this.slides[remainder(this.selectedIdx-1, this.slides.length)].slideHeight / 2 - selectedSlide.slideHeight / 2;
+        let slideUpOffset = Math.abs((this.slides[remainder(this.selectedIdx-1, this.slides.length)].slideHeight - selectedSlide.slideHeight) / 2);
+        let slideDownOffset = Math.abs((this.slides[remainder(this.selectedIdx+1, this.slides.length)].slideHeight - selectedSlide.slideHeight) / 2);
+
+        // Apply offset buffer
+        const offsetBuffer = 10;
+        slideUpOffset += offsetBuffer;
+        slideDownOffset += offsetBuffer;
+
 
         // Placing slides down;
         let slideDownPosition = this.frameHeight / 2;
         let slideDownIdx = this.selectedIdx + 1;
-
-
 
         // Line up all of the existing slides below the selected slide
         while (slideDownIdx < this.slides.length) {
