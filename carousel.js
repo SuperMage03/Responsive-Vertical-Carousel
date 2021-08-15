@@ -18,7 +18,7 @@ class Carousel {
 
 
         Array.from(this.frameNode.querySelectorAll("img")).forEach((slideNode, index) => {
-            this.slides.push(new CarouselSlides(slideNode, index));
+            this.slides.push(new CarouselSlide(slideNode, index));
             this.referenceSlideNodes.push(slideNode.cloneNode());
         });
 
@@ -85,7 +85,7 @@ class Carousel {
 
                 const newNode = this.referenceSlideNodes[remainder(lastSlideID+1, this.referenceSlideNodes.length)].cloneNode();
                 lastSlide.node.after(newNode);
-                this.slides.push(new CarouselSlides(newNode, remainder(lastSlideID+1, this.referenceSlideNodes.length)));
+                this.slides.push(new CarouselSlide(newNode, remainder(lastSlideID+1, this.referenceSlideNodes.length)));
 
                 slideDownPosition += this.slides.slice(-1)[0].slideHeight / 2 + this.slides.slice(-2)[0].slideHeight / 2;
                 this.slides.slice(-1)[0].node.style.top = `${Math.ceil(slideDownPosition)}px`;
@@ -128,7 +128,7 @@ class Carousel {
 
                 const newNode = this.referenceSlideNodes[remainder(firstSlideID-1, this.referenceSlideNodes.length)].cloneNode();
                 firstSlide.node.before(newNode);
-                this.slides.unshift(new CarouselSlides(newNode, remainder(firstSlideID-1, this.referenceSlideNodes.length)));
+                this.slides.unshift(new CarouselSlide(newNode, remainder(firstSlideID-1, this.referenceSlideNodes.length)));
 
                 slideUpPosition -= this.slides[0].slideHeight / 2 + this.slides[1].slideHeight / 2;
                 this.slides[0].node.style.top = `${Math.ceil(slideUpPosition)}px`;
@@ -147,7 +147,7 @@ class Carousel {
     }
 }
 
-class CarouselSlides {
+class CarouselSlide {
     constructor(node, slideID) {
         this.node = node;
         this.slideID = slideID;
